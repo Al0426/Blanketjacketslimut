@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Fleece Reversible Blanket · Jaket Selimut 2in1</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+            color: #1e1e2f;
+            padding-bottom: 85px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.02);
+        }
+
+        /* ROOT COLOR – ORANYE SHOPEE */
+        :root {
+            --primary: #ee4d2d;        /* warna aksen oranye */
+            --primary-light: #fceded;
+            --bg-light: #fafafa;
+            --border-light: #f0f0f0;
+        }
+
+        /* SLIDER */
+        .product-swiper {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: #fff;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #fff;
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--primary) !important;
+        }
+
+        /* FLASH SALE – solid oranye */
+        .flash-sale-bar {
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+        }
+        .fs-left {
+            display: flex;
+            flex-direction: column;
+        }
+        .fs-label {
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+        .fs-subtext {
+            font-size: 0.6rem;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+        .fs-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .fs-timer-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .timer-box {
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(2px);
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 800;
+            font-family: 'Plus Jakarta Sans', monospace;
+            letter-spacing: 1px;
+        }
+
+        /* PRODUK INFO */
+        .p-info {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .p-price-now {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1;
+        }
+        .p-price-was {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 4px;
+        }
+        .p-discount-tag {
+            background: #ffe8e5;
+            color: var(--primary);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 30px;
+            margin-left: 6px;
+        }
+        .p-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin: 10px 0 6px;
+        }
+
+        /* TOKO */
+        .shop-section {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            border-bottom: 8px solid #f2f2f2;
+            background: #fff;
+        }
+        .shop-logo {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+        .shop-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .shop-meta {
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        /* SECTION WRAP */
+        .s-section {
+            padding: 16px;
+            border-bottom: 8px solid #f2f2f2;
+            background: #fff;
+        }
+        .s-section-title {
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: #2c2c2c;
+            margin-bottom: 10px;
+        }
+
+        /* VARIANT HORIZONTAL SCROLL */
+        .variant-scroll-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 5px 0 10px;
+            scrollbar-width: none;
+        }
+        .variant-scroll-container::-webkit-scrollbar { display: none; }
+        .variant-card {
+            flex: 0 0 100px;
+            border: 1.5px solid #eee;
+            border-radius: 12px;
+            padding: 6px 4px 8px;
+            background: #fff;
+            transition: 0.15s;
+            cursor: pointer;
+            position: relative;
+        }
+        .variant-card.active {
+            border-color: var(--primary);
+            background: #fff9f7;
+        }
+        .v-card-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+        .v-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .v-card-name {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 6px;
+            color: #444;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .variant-card.active .v-card-name {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .v-check {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: var(--primary);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 30px;
+            font-size: 10px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .variant-card.active .v-check {
+            display: flex;
+        }
+
+        /* SHIPPING */
+        .shipping-box {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            background: #fff;
+            border-bottom: 8px solid #f2f2f2;
+            cursor: pointer;
+        }
+        .shipping-icon {
+            color: #00a99d;
+            font-size: 1.3rem;
+        }
+        .shipping-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #1e1e2f;
+        }
+        .shipping-desc {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        /* DROPDOWN */
+        .dropdown-trigger {
+            padding: 16px;
+            background: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            color: #2d2d2d;
+        }
+        .dropdown-trigger i { transition: transform 0.2s; }
+        .dropdown-trigger.active i { transform: rotate(180deg); }
+        .dropdown-content {
+            display: none;
+            padding: 8px 16px 20px;
+            background: #fff;
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.6;
+            white-space: pre-line;
+            border-bottom: 1px solid #f7f7f7;
+        }
+        .dropdown-content.active { display: block; }
+
+        /* FEATURES VERTICAL */
+        .s-section-features {
+            background: #fff;
+            border-bottom: 8px solid #f2f2f2;
+        }
+        .features-vertical-list { display: flex; flex-direction: column; }
+        .feature-vertical-item { padding-bottom: 20px; }
+        .feature-img-large { width: 100%; height: auto; display: block; }
+        .feature-content-large { padding: 12px 18px; }
+        .feature-title-large { font-size: 1.1rem; font-weight: 800; margin-bottom: 6px; }
+        .feature-desc-large { font-size: 0.85rem; color: #4a4a5a; line-height: 1.6; }
+
+        /* TESTIMONI */
+        .s-testimonial-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .st-header { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
+        .st-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+        .st-name { font-weight: 700; font-size: 0.85rem; }
+        .st-stars { color: var(--primary); font-size: 0.7rem; margin: 2px 0; }
+        .st-meta { font-size: 0.65rem; color: #aaa; }
+        .st-text { font-size: 0.85rem; color: #3d3d4e; line-height: 1.5; }
+
+        /* SUMMARY CARD DI ORDER SECTION */
+        .summary-card {
+            background: #f6faff;
+            border: 1px solid #e0eaff;
+            border-radius: 18px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .summary-img {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+        .summary-check {
+            margin-left: auto;
+            color: #2ecc71;
+            font-size: 1.8rem;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 12px 16px;
+            border-top: 1px solid #efefef;
+            z-index: 1000;
+        }
+        .btn-buy {
+            width: 100%;
+            background: var(--primary);
+            border: none;
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+            padding: 16px 10px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 14px rgba(238, 77, 45, 0.25);
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .btn-buy:active { transform: scale(0.97); background: #d43d1f; }
+
+        /* LIGHTBOX */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 3000;
+            display: none; justify-content: center; align-items: center; padding: 20px;
+        }
+        .lightbox-container { max-width: 400px; position: relative; }
+        .lightbox img { width: 100%; border-radius: 16px; }
+        .lightbox-close {
+            position: absolute; top: -40px; right: 0; color: white;
+            font-size: 2.8rem; cursor: pointer; font-weight: 300;
+        }
+
+        /* loading placeholder embed (minimal) */
+        .ooef-loader { visibility: visible; opacity: 1; display: flex; justify-content: center; padding: 30px; background: #f9f9f9; border-radius: 20px; }
+        .ooef-loader > div { border: 3px solid #f3f3f3; border-top: 3px solid var(--primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 0.8s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- SLIDER UTAMA -->
+    <div class="swiper product-swiper" id="main-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://down-id.img.susercontent.com/file/id-11134207-81zth-mfdrqwgyqi2w92@resize_w450_nl.webp" id="main-product-img" alt="produk"></div>
+            <div class="swiper-slide"><img src="https://down-id.img.susercontent.com/file/id-11134207-8224y-mhablgsjyyvjd1@resize_w450_nl.webp" alt="produk-2"></div>
+            <div class="swiper-slide"><img src="https://down-id.img.susercontent.com/file/id-11134207-8224q-mhablgsk0dfzb1@resize_w450_nl.webp" alt="produk-3"></div>
+            <div class="swiper-slide"><img src="https://down-id.img.susercontent.com/file/id-11134207-8224y-mhablgsk36kv28@resize_w450_nl.webp" alt="produk-4"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- FLASH SALE -->
+    <div class="flash-sale-bar">
+        <div class="fs-left">
+            <span class="fs-label">FLASH SALE!</span>
+            <span class="fs-subtext">PROMO SPESIAL HARI INI</span>
+        </div>
+        <div class="fs-right">
+            <div class="fs-timer-label"><i class="far fa-clock"></i> BERAKHIR</div>
+            <div class="timer-box" id="timer">00 : 59 : 59</div>
+        </div>
+    </div>
+
+    <!-- INFO PRODUK + HARGA -->
+    <div class="p-info">
+        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+            <span class="p-price-now" id="display-price">Rp 279.000</span>
+            <span class="p-price-was">Rp 358.000</span>
+            <span class="p-discount-tag">-22%</span>
+        </div>
+        <h1 class="p-title">Fleece Reversible Blanket JAKET SELIMUT 2in1</h1>
+        <div style="display:flex; gap:12px; font-size:0.75rem; color:#666;">
+            <span><i class="fas fa-star" style="color:var(--primary);"></i> 4.9</span>
+            <span>1.2RB Penilaian</span>
+            <span>2.5RB+ Terjual</span>
+        </div>
+    </div>
+
+    <!-- TOKO -->
+    <div class="shop-section">
+        <img src="https://cdn.orderonline.id/uploads/images_2646211768233242426.png" class="shop-logo" alt="Blanket Official">
+        <div class="shop-info">
+            <div class="shop-name">Blanket Official Store</div>
+            <div class="shop-meta"><i class="fas fa-store-alt"></i> Jakarta  ·  Online 1 jam lalu</div>
+        </div>
+    </div>
+
+    <!-- VARIANT (HORIZONTAL SCROLL) + selected-variant-name -->
+    <div class="s-section">
+        <div class="s-section-title">PILIHAN: <span id="selected-variant-name" style="color:var(--primary);">Caramel</span></div>
+        <div class="variant-scroll-container" id="variantContainer">
+            <!-- data akan di klik pakai function -->
+            <div class="variant-card active" onclick="selectVariant(this, '279000', 'Caramel', 'https://down-id.img.susercontent.com/file/id-11134207-81zth-mfdrqwgyqi2w92@resize_w450_nl.webp')">
+                <div class="v-card-img"><img src="https://down-id.img.susercontent.com/file/id-11134207-81zth-mfdrqwgyqi2w92@resize_w450_nl.webp"></div>
+                <div class="v-card-name">Caramel</div>
+                <div class="v-check"><i class="fas fa-check"></i></div>
+            </div>
+            <div class="variant-card" onclick="selectVariant(this, '279000', 'Classic Black', 'https://down-id.img.susercontent.com/file/id-11134207-8224t-mg4xam9qtibvc9@resize_w450_nl.webp')">
+                <div class="v-card-img"><img src="https://down-id.img.susercontent.com/file/id-11134207-8224t-mg4xam9qtibvc9@resize_w450_nl.webp"></div>
+                <div class="v-card-name">Classic Black</div>
+                <div class="v-check"><i class="fas fa-check"></i></div>
+            </div>
+            <div class="variant-card" onclick="selectVariant(this, '279000', 'Milo', 'https://down-id.img.susercontent.com/file/id-11134207-8224t-mg4xam9qwbgrb0@resize_w450_nl.webp')">
+                <div class="v-card-img"><img src="https://down-id.img.susercontent.com/file/id-11134207-8224t-mg4xam9qwbgrb0@resize_w450_nl.webp"></div>
+                <div class="v-card-name">Milo</div>
+                <div class="v-check"><i class="fas fa-check"></i></div>
+            </div>
+            <div class="variant-card" onclick="selectVariant(this, '279000', 'Deep Blue', 'https://down-id.img.susercontent.com/file/id-11134207-82251-mg4xam9qxq1744@resize_w450_nl.webp')">
+                <div class="v-card-img"><img src="https://down-id.img.susercontent.com/file/id-11134207-82251-mg4xam9qxq1744@resize_w450_nl.webp"></div>
+                <div class="v-card-name">Deep Blue</div>
+                <div class="v-check"><i class="fas fa-check"></i></div>
+            </div>
+            <div class="variant-card" onclick="selectVariant(this, '279000', 'Light Grey', 'https://down-id.img.susercontent.com/file/id-11134207-81ztl-mezej7s65szv65@resize_w450_nl.webp')">
+                <div class="v-card-img"><img src="https://down-id.img.susercontent.com/file/id-11134207-81ztl-mezej7s65szv65@resize_w450_nl.webp"></div>
+                <div class="v-card-name">Light Grey</div>
+                <div class="v-check"><i class="fas fa-check"></i></div>
+            </div>
+            <div class="variant-card" onclick="selectVariant(this, '279000', 'Cloud Grey', 'https://down-id.img.susercontent.com/file/id-11134207-81ztn-mfdrqwgv59u2ec@resize_w450_nl.webp')">
+                <div class="v-card-img"><img src="https://down-id.img.susercontent.com/file/id-11134207-81ztn-mfdrqwgv59u2ec@resize_w450_nl.webp"></div>
+                <div class="v-card-name">Cloud Grey</div>
+                <div class="v-check"><i class="fas fa-check"></i></div>
+            </div>
+            <div class="variant-card" onclick="selectVariant(this, '279000', 'Sakura Pink', 'https://down-id.img.susercontent.com/file/id-11134207-8224q-mgdfov16kkqy41@resize_w450_nl.webp')">
+                <div class="v-card-img"><img src="https://down-id.img.susercontent.com/file/id-11134207-8224q-mgdfov16kkqy41@resize_w450_nl.webp"></div>
+                <div class="v-card-name">Sakura Pink</div>
+                <div class="v-check"><i class="fas fa-check"></i></div>
+            </div>
+            <div class="variant-card" onclick="selectVariant(this, '279000', 'Navy Stripes', 'https://down-id.img.susercontent.com/file/id-11134207-8224s-mh62ps42o6bsdb@resize_w450_nl.webp')">
+                <div class="v-card-img"><img src="https://down-id.img.susercontent.com/file/id-11134207-8224s-mh62ps42o6bsdb@resize_w450_nl.webp"></div>
+                <div class="v-card-name">Navy Stripes</div>
+                <div class="v-check"><i class="fas fa-check"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHIPPING GARANSI -->
+    <div class="shipping-box" onclick="scrollToOrder()">
+        <div class="shipping-icon"><i class="fas fa-truck-fast"></i></div>
+        <div>
+            <div class="shipping-title" id="dynamic-shipping-date">Garansi Tiba: 4 - 7 Mar</div>
+            <div class="shipping-desc">Jaminan ongkir s/d Rp20RB · Gratis packing</div>
+        </div>
+        <i class="fas fa-chevron-right" style="margin-left:auto; color:#ccc;"></i>
+    </div>
+
+    <!-- DROPDOWN DESKRIPSI / SPESIFIKASI -->
+    <div style="background: #fff;">
+        <div class="dropdown-trigger active" onclick="toggleDropdown(this)">📦 DESKRIPSI PRODUK <i class="fas fa-chevron-down"></i></div>
+        <div class="dropdown-content active">• Nikmati kehangatan maksimal dari bahan fleece premium yang sangat lembut di kulit.<br>• Bebas bergerak saat bersantai tanpa perlu takut selimut merosot.<br>• Desain dua sisi serbaguna (reversible) yang praktis sebagai jaket maupun selimut hangat.<br>• Dilengkapi kantong besar untuk menyimpan ponsel dan menjaga tangan tetap hangat.</div>
+
+        <div class="dropdown-trigger" onclick="toggleDropdown(this)">📏 PANDUAN UKURAN <i class="fas fa-chevron-down"></i></div>
+        <div class="dropdown-content">Ukuran: 100 x 140 cm (cocok untuk dewasa & remaja)<br>Berat: ±600 gram</div>
+
+        <div class="dropdown-trigger" onclick="toggleDropdown(this)">⚙️ SPESIFIKASI TEKNIS <i class="fas fa-chevron-down"></i></div>
+        <div class="dropdown-content">Bahan: Premium Anti-Pilling Fleece<br>Warna: 8 pilihan (reversible 2 sisi)<br>Garansi 100% original, siap kirim</div>
+    </div>
+
+    <!-- FITUR VERTICAL (4 fitur) -->
+    <div class="s-section-features">
+        <div style="padding:18px 16px 0; font-weight:800; font-size:0.9rem; letter-spacing:1px; color:#ee4d2d;">✨ FITUR UNGGULAN</div>
+        <div class="features-vertical-list">
+            <div class="feature-vertical-item">
+                <img src="https://down-id.img.susercontent.com/file/id-11134207-8224y-mhablgsjyyvjd1@resize_w450_nl.webp" class="feature-img-large" onclick="openLightbox(this.src)">
+                <div class="feature-content-large">
+                    <div class="feature-title-large">Transformasi Wearable 2-in-1</div>
+                    <div class="feature-desc-large">Kancing pintar mengubah selimut menjadi jubah hangat anti-geser. Cocok untuk work from cafe atau santai di rumah.</div>
+                </div>
+            </div>
+            <div class="feature-vertical-item">
+                <img src="https://down-id.img.susercontent.com/file/id-11134207-8224w-mhablgsk1s0f39@resize_w450_nl.webp" class="feature-img-large" onclick="openLightbox(this.src)">
+                <div class="feature-content-large">
+                    <div class="feature-title-large">Sensasi Fleece Ultra-Lembut</div>
+                    <div class="feature-desc-large">Serat mikro halus yang ringan, breathable, namun efektif memerangkap panas tubuh. Lembut seperti pelukan.</div>
+                </div>
+            </div>
+            <div class="feature-vertical-item">
+                <img src="https://down-id.img.susercontent.com/file/id-11134207-8224q-mhablgsk0dfzb1@resize_w450_nl.webp" class="feature-img-large" onclick="openLightbox(this.src)">
+                <div class="feature-content-large">
+                    <div class="feature-title-large">Gaya Reversibel Eksklusif</div>
+                    <div class="feature-desc-large">Dua warna berbeda dalam satu produk — fleksibel, bisa dibalik sesuai mood atau outfit.</div>
+                </div>
+            </div>
+            <div class="feature-vertical-item">
+                <img src="https://down-id.img.susercontent.com/file/id-11134207-8224r-mhablgsk4l5bf3.webp" class="feature-img-large" onclick="openLightbox(this.src)">
+                <div class="feature-content-large">
+                    <div class="feature-title-large">Portabel & Praktis</div>
+                    <div class="feature-desc-large">Mudah dilipat, cocok dibawa travelling, camping, atau di kantor yang ber-AC.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER SECTION (dengan summary & embed) -->
+    <div id="order-section" style="padding:20px 16px; background:#fff; border-bottom:8px solid #f2f2f2;">
+        <div id="variant-summary">
+            <div class="summary-card">
+                <img src="https://down-id.img.susercontent.com/file/id-11134207-81zth-mfdrqwgyqi2w92@resize_w450_nl.webp" class="summary-img" id="summary-img">
+                <div>
+                    <div style="font-weight:800; font-size:0.9rem;">Fleece Reversible Blanket</div>
+                    <div style="background:#eee; padding:4px 12px; border-radius:30px; font-size:0.7rem; font-weight:600; display:inline-block; margin-top:6px;" id="summary-variant">Caramel</div>
+                </div>
+                <i class="fas fa-check-circle summary-check"></i>
+            </div>
+        </div>
+        <h3 style="text-align:center; font-weight:900; color:var(--primary); font-size:1rem; margin:10px 0 20px;">📋 FORMULIR PEMESANAN</h3>
+        
+        <!-- Embed OrderOnline (placeholder) -->
+        <div class="ooef"> 
+            <form class="orderonline-embed-form" data-username="emma" data-product-slug="id54te567dfg" data-product-id="69a32adfb8c4afb3270c149b" id="oo-embed-form-id54te567dfg-4494">
+                <div class="ooef-loader"><div></div></div>
+            </form> 
+        </div>
+        <!-- script embed (dibiarkan apa adanya) -->
+        <script>
+            if (typeof xLogError != 'function') { var xLogError = function (error) { var req = new XMLHttpRequest(); var payload = JSON.stringify({ url: document.location.href, line: error.line, stack: error.stack }); var params = 'message=' + encodeURIComponent(error.name) + '&payload=' + encodeURIComponent(payload) + '&type=embed&level=error'; req.open('POST', 'https://api.orderonline.id/log', true); req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); req.send(params); }; } 
+            try { 
+                if (typeof xEmbedScript != 'function') { var xEmbedScript = function () { !function(w, d, e, v, id, t, s) { if (d.getElementById(id)) return; t = d.createElement(e);t.async = !0;t.src = v;t.id = id; s = d.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, 'script', 'https://cdn.orderonline.id/js/embed-v2-slim.min.js?v=8.0.2', 'oo-embed-js'); }; } 
+                if (typeof xEmbedInit != 'function') { var xEmbedInit = function (w, n) { if (w.ooe) return; n = w.ooe = function() { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) }; if (!w._ooe) w._ooe = n; n.push = n;n.loaded = !0;n.version = '8.0.2';n.queue = []; }; } 
+                xEmbedInit(window); ooe('setup', 'redirect', 'https://emma.orderonline.id'); ooe('init', '5f16831a9d8e8e4fb67472e5', '69a32adfb8c4afb3270c149b', null, 'oo-embed-form-id54te567dfg-4494', {"mode":"page","action":"Klik","triggerPixel":true,"triggerGtm":true}); 
+                if (!window.jQuery) { !function(w, d, e, v, id, t, s) { if (d.getElementById(id)) return; t = d.createElement(e);t.async = !0;t.src = v;t.id = id; t.addEventListener('load', xEmbedScript); s = d.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, 'script', 'https://cdn.orderonline.id/js/vendor/jquery.min.js', 'oo-embed-jquery'); } else { xEmbedScript(); } 
+            } catch (e) { xLogError(e); throw e; } 
+        </script>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="s-section">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+            <span class="s-section-title">PENILAIAN PRODUK</span>
+            <span style="color:var(--primary); font-size:0.75rem; font-weight:700;">Lihat Semua ></span>
+        </div>
+        <div class="s-testimonial-list">
+            <div class="s-testimonial-item">
+                <div class="st-header"><img src="https://down-id.img.susercontent.com/file/141679fb341a275fb3f9bf7aea11c90c_tn" class="st-avatar"><div><div class="st-name">Jessica</div><div class="st-stars">★★★★★</div><div class="st-meta"><span class="dynamic-date" data-days-ago="6"></span></div></div></div>
+                <div class="st-text">Suka banget sama bahannya yang halus! Warnanya sesuai foto dan pengirimannya cepet banget.</div>
+            </div>
+            <div class="s-testimonial-item">
+                <div class="st-header"><img src="https://down-id.img.susercontent.com/file/f6a7461f06ad96162e5247bd086b7e37_tn" class="st-avatar"><div><div class="st-name">Raka</div><div class="st-stars">★★★★★</div><div class="st-meta"><span class="dynamic-date" data-days-ago="4"></span></div></div></div>
+                <div class="st-text">Jaket selimutnya anget parah. Packing rapi banget, recommended seller!</div>
+            </div>
+            <div class="s-testimonial-item">
+                <div class="st-header"><img src="https://down-id.img.susercontent.com/file/id-11134233-7r98w-lwbm8ozq58vi7e_tn" class="st-avatar"><div><div class="st-name">Syifa</div><div class="st-stars">★★★★★</div><div class="st-meta"><span class="dynamic-date" data-days-ago="5"></span></div></div></div>
+                <div class="st-text">Bisa dibolak-balik, tekstur fleece lembut. Anak aku suka banget buat tidur.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM FIXED BUTTON -->
+    <div class="bottom-nav">
+        <button class="btn-buy" onclick="scrollToOrder()">BELI SEKARANG</button>
+    </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <div class="lightbox-container" onclick="event.stopPropagation()">
+        <span class="lightbox-close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+        <img id="lightbox-img" src="">
+    </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('#main-slider', {
+        pagination: { el: '.swiper-pagination', clickable: true },
+        autoplay: { delay: 4500, disableOnInteraction: false },
+        loop: false,
+    });
+
+    // fungsi utama
+    function selectVariant(el, price, name, image) {
+        // update active class
+        document.querySelectorAll('.variant-card').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('selected-variant-name').innerText = name;
+
+        // update harga (jika ada)
+        if (price) document.getElementById('display-price').innerText = 'Rp ' + Number(price).toLocaleString('id-ID');
+
+        // ganti gambar utama slider di slide pertama
+        const mainImg = document.getElementById('main-product-img');
+        if (mainImg) mainImg.src = image;
+        if (swiper) swiper.slideTo(0);  // kembali ke slide pertama
+
+        // update summary card di order section
+        const summaryDiv = document.getElementById('variant-summary');
+        if (summaryDiv) {
+            summaryDiv.innerHTML = `
+                <div class="summary-card">
+                    <img src="${image}" class="summary-img">
+                    <div>
+                        <div style="font-weight:800; font-size:0.9rem;">Fleece Reversible Blanket</div>
+                        <div style="background:#eee; padding:4px 12px; border-radius:30px; font-size:0.7rem; font-weight:600; display:inline-block; margin-top:6px;">${name}</div>
+                    </div>
+                    <i class="fas fa-check-circle summary-check"></i>
+                </div>
+            `;
+        }
+    }
+
+    function toggleDropdown(el) {
+        el.classList.toggle('active');
+        const content = el.nextElementSibling;
+        if (content) content.classList.toggle('active');
+    }
+
+    function scrollToOrder() {
+        document.getElementById('order-section')?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openLightbox(src) {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        if (lb && lbImg) { lbImg.src = src; lb.style.display = 'flex'; }
+    }
+
+    // hitung tanggal dinamis (shipping + review)
+    function updateDynamicDates() {
+        const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+        const today = new Date();
+
+        // shipping
+        const start = new Date(today); start.setDate(today.getDate() + 3);
+        const end = new Date(today); end.setDate(today.getDate() + 6);
+        let shipText = start.getDate() + " - " + end.getDate() + " " + months[start.getMonth()];
+        if (start.getMonth() !== end.getMonth()) shipText = start.getDate() + " " + months[start.getMonth()] + " - " + end.getDate() + " " + months[end.getMonth()];
+        document.getElementById('dynamic-shipping-date') && (document.getElementById('dynamic-shipping-date').innerText = "Garansi Tiba: " + shipText);
+
+        // review dates
+        document.querySelectorAll('.dynamic-date').forEach(el => {
+            let days = parseInt(el.dataset.daysAgo) || 0;
+            let d = new Date(today); d.setDate(today.getDate() - days);
+            let day = String(d.getDate()).padStart(2,'0');
+            let month = String(d.getMonth()+1).padStart(2,'0');
+            let year = d.getFullYear();
+            el.innerText = `${day}/${month}/${year}`;
+        });
+    }
+
+    // Timer Flash Sale
+    function startTimer(duration, display) {
+        let timer = duration, hours, minutes, seconds;
+        setInterval(() => {
+            hours = Math.floor(timer / 3600);
+            minutes = Math.floor((timer % 3600) / 60);
+            seconds = Math.floor(timer % 60);
+            display.textContent = 
+                (hours < 10 ? "0" + hours : hours) + " : " +
+                (minutes < 10 ? "0" + minutes : minutes) + " : " +
+                (seconds < 10 ? "0" + seconds : seconds);
+            if (--timer < 0) timer = duration;
+        }, 1000);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        updateDynamicDates();
+
+        // set first variant active
+        const first = document.querySelector('.variant-card');
+        if (first) first.click();   // trigger update summary
+
+        const timerDisplay = document.getElementById('timer');
+        if (timerDisplay) startTimer(3600, timerDisplay); // 1 jam
+    });
+</script>
+<!-- ensure summary match default caramel -->
+</body>
+</html>
